@@ -7,4 +7,4 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{"./BaseElement":"awF9"}],"aM6+":[function(require,module,exports) {
 "use strict";require("./YoutubeVideo"),require("./ActionNetworkForm");const e=document.querySelector("youtube-video");
 },{"./YoutubeVideo":"96TN","./ActionNetworkForm":"CDbW"}]},{},["aM6+"], null)
-//# sourceMappingURL=/changethedebate.org/Main.41d9be4f.js.map
+//# sourceMappingURL=Main.41d9be4f.js.map
