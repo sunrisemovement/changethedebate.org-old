@@ -1,5 +1,8 @@
 {
   "version": 2,
+  "github": {
+    "enabled": true
+  },
   "name": "changethedebate.org",
   "builds": [
     {
