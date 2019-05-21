@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "name": "changethedebate.org",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build",
+      "options": { "distDir": "dest" }
+    }
+  ]
+}
