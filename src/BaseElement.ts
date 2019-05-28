@@ -13,6 +13,10 @@ export abstract class BaseElement extends HTMLElement {
     this.importAttributes()
   }
 
+  public disconnectedCallback() {
+    
+  }
+
   private addStyles() {
     if ('adoptedStyleSheets' in this.shadowRoot!) {
       const sheet = new CSSStyleSheet()

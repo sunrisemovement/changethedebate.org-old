@@ -13,9 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "parcel-bundler": "1.12.3",
-    "typescript": "3.4.5",
-    "youtube-player": "5.5.2",
-    "@types/youtube-player": "5.5.1"
+    "typescript": "3.4.5"
   },
   "browserslist": [
     "> 5%"
