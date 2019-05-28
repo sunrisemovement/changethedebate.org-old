@@ -21,7 +21,6 @@ class ActionNetworkForm extends BaseElement {
     }
     iframe {
       border: 0;
-      background-color: #000;
       width: 100%;
       position: relative;
       display: block;
@@ -51,6 +50,7 @@ class ActionNetworkForm extends BaseElement {
 
   private injectForm() {
     this._iframe = document.createElement('iframe')
+    this._iframe.setAttribute('loading', 'lazy')
     this._iframe.srcdoc = this.createIframeContent()
     this._iframe.addEventListener('load', this.onIframeLoad)
     this.shadowRoot!.append(this._iframe)
@@ -71,13 +71,18 @@ class ActionNetworkForm extends BaseElement {
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
   <script async src="https://actionnetwork.org/widgets/v3/form/${this.actionId}?format=js&source=widget"></script>
   <style>
+    :root {
+      --sunrise-yellow: #ffde16;
+      --sunrise-charcoal: #33342e;
+      --sunrise-magenta: #8f0d56;
+      --sunrise-orange: #fd9014;
+    }
     * {
       box-sizing: border-box;
     }
     body {
       font-family: Source Sans Pro;
       margin: 0;
-      background-color: ${this._theme === 'dark' ? '#33342e' : '#ffffff'};
       color: ${this._theme === 'dark' ? '#ffffff' : '#000000'};
       position: relative;
       padding: 16px;
