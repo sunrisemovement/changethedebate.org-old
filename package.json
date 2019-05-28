@@ -6,16 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel index.html",
-    "build": "parcel build index.html --public-url .",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "build": "parcel build index.html --public-url ."
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "gh-pages": "2.0.1",
-    "lit-element": "2.1.0",
     "parcel-bundler": "1.12.3",
     "typescript": "3.4.5",
     "youtube-player": "5.5.2",
