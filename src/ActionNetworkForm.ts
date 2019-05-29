@@ -83,7 +83,7 @@ class ActionNetworkForm extends BaseElement {
     body {
       font-family: Source Sans Pro;
       margin: 0;
-      color: ${this._theme === 'dark' ? '#ffffff' : '#000000'};
+      color: ${this._theme === 'dark' ? '#ffffff' : 'var(--sunrise-charcoal)'};
       position: relative;
       padding: 16px;
     }
