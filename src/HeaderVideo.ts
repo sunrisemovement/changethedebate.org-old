@@ -1,5 +1,6 @@
 import { BaseElement } from './BaseElement'
-import filepath from '../assets/video/ctd_video.mp4'
+import highDataVideoPath from '../assets/video/ctd_video.mp4'
+import lowDataVideoPath from '../assets/video/ctd_video_mobile.mp4'
 
 export class HeaderVideo extends BaseElement {
   public get currentTime() {
@@ -14,22 +15,21 @@ export class HeaderVideo extends BaseElement {
       display: block;
       height: auto;
       position: relative;
-      padding-top: 56.25%;
       pointer-events: none;
     }
     video {
       display: block;
-      position: absolute;
-      top: 50%;
-      left: 50%;
       height: 100%;
       width: 100%;
-      transform: translateX(-50%) translateY(-50%);
+      object-position: center;
+      object-fit: cover;
     }
   `
 
   public connectedCallback() {
     super.connectedCallback()
+    document.addEventListener('visibilitychange', this.onDocumentVisibilityChange)
+    window.addEventListener('scroll', this.onWindowScroll)
     this._video = document.createElement('video')
     this._video.setAttribute('playsinline', '')
     this._video.autoplay = true
@@ -40,8 +40,45 @@ export class HeaderVideo extends BaseElement {
     this._video.addEventListener('playing', this.onVideoPlaying)
     this._video.addEventListener('waiting', this.onVideoWaiting)
     this._video.addEventListener('timeupdate', this.onVideoTimeUpdate)
-    this._video.src = filepath
+    this._video.src = this.useHighDataVideo() ? highDataVideoPath : lowDataVideoPath
     this.shadowRoot!.appendChild(this._video)
+  }
+
+  public disconnectedCallback() {
+    super.disconnectedCallback()
+    document.removeEventListener('visibilitychange', this.onDocumentVisibilityChange)
+    window.removeEventListener('scroll', this.onWindowScroll)
+    this._video && this.shadowRoot!.removeChild(this._video)
+    this._video = null
+  }
+
+  private useHighDataVideo = (): boolean => {
+    if (typeof window.orientation === 'undefined') {
+      return true
+    } else if (navigator.connection) {
+      return navigator.connection.type !== 'cellular'
+    } else {
+      return /iPhone/.test(navigator.platform)
+    }
+  }
+
+  private onWindowScroll = () => {
+    if (this._video && this._video.ended) return
+    const rect = this.getBoundingClientRect()
+    if (rect.bottom <= 0) {
+      this._video && this._video.pause()
+    } else {
+      this._video && this._video.play().catch(() => {})
+    }
+  }
+
+  private onDocumentVisibilityChange = () => {
+    if (this._video && this._video.ended) return
+    if (document.visibilityState === 'visible') {
+      this._video && this._video.play().catch(() => {})
+    } else {
+      this._video && this._video.pause()
+    }
   }
 
   private onVideoLoadStart = () => {
@@ -50,7 +87,7 @@ export class HeaderVideo extends BaseElement {
 
   private onVideoCanPlayThrough = () => {
     this.setAttribute('state', 'ready')
-    console.log('hi')
+    this._video!.play().catch(() => { })
   }
 
   private onVideoPlaying = () => {

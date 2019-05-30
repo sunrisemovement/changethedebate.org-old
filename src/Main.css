@@ -4,7 +4,7 @@
   --sunrise-magenta: #8f0d56;
   --sunrise-orange: #fd9014;
   --sunrise-font: Source Sans Pro;
-  --form-gutter-size: 0.4;
+  --form-gutter-size: 0.35;
   --max-width: 1500px;
 }
 
@@ -26,7 +26,7 @@ main {
   display: grid;
   grid-template-columns:
   auto
-  minmax(0px, calc(var(--max-width) * calc(1 - var(--form-gutter-size))))
+  minmax(300px, calc(var(--max-width) * calc(1 - var(--form-gutter-size))))
   minmax(300px, calc(var(--max-width) * var(--form-gutter-size)))
   auto;
   grid-template-rows: repeat(auto-fill, auto);
@@ -157,7 +157,7 @@ div.video-inner {
 }
 section#video {
   height: 56.25vw;
-  max-height: 75vh;
+  max-height: calc(100vh - 200px);
   position: relative;
   z-index: 2;
   width: 100%;
@@ -244,7 +244,7 @@ div.lead-in-inner {
 }
 section#lead-in {
   color: #fff;
-  padding: 96px 64px;
+  padding: 96px 32px;
   z-index: 2;
 }
 section#lead-in h2 {
@@ -257,9 +257,7 @@ section#lead-in h2 {
   font-weight: 900;
   letter-spacing: 0.8px;
 }
-section#lead-in h2 .hashtag {
-  word-break: break-word;
-}
+
 section#lead-in p {
   font-size: 24px;
 }
@@ -272,7 +270,7 @@ div.background.questions {
   height: calc(100% + 40px);
 }
 section#questions {
-  padding: 64px;
+  padding: 64px 32px;
   color: #fff;
 }
 section#questions h2 {
@@ -321,7 +319,7 @@ section#signup-form action-network-form {
   );
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
   main {
     grid-template-columns: auto;
     grid-column-gap: 0;
@@ -381,6 +379,8 @@ section#signup-form action-network-form {
     min-width: 0px;
     width: 100%;
     padding: 0 4px;
+    max-width: 768px;
+    justify-self: center;
   }
   section#signup-form action-network-form {
     max-height: none;
