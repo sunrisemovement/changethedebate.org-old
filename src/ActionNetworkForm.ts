@@ -7,13 +7,6 @@ class ActionNetworkForm extends BaseElement {
   private _showActionNetworkLogo: boolean = true
   private _theme: string = 'light'
 
-  protected importAttributes() {
-    this.actionId = this.getAttribute('action-id')
-    this._showActionName = this.getAttribute('show-action-name') !== 'false'
-    this._showActionNetworkLogo = this.getAttribute('show-action-network-logo') !== 'false'
-    this._theme = this.getAttribute('theme') === 'dark' ? 'dark' : 'light'
-  }
-
   protected static styles = `
     :host {
       display: block;
@@ -40,6 +33,10 @@ class ActionNetworkForm extends BaseElement {
 
   public connectedCallback() {
     super.connectedCallback()
+    this.actionId = this.getAttribute('action-id')
+    this._showActionName = this.getAttribute('show-action-name') !== 'false'
+    this._showActionNetworkLogo = this.getAttribute('show-action-network-logo') !== 'false'
+    this._theme = this.getAttribute('theme') === 'dark' ? 'dark' : 'light'
     if (this.actionId) this.injectForm()
   }
 

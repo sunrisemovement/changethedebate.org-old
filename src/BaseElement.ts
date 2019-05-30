@@ -7,10 +7,8 @@ export abstract class BaseElement extends HTMLElement {
 
   protected static styles: string = ''
 
-  protected abstract importAttributes(): void
-
   public connectedCallback() {
-    this.importAttributes()
+
   }
 
   public disconnectedCallback() {
